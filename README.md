@@ -8,11 +8,11 @@
 - [ ] feature3/signUpwithGoogle
 - [ ] feature6/updateUserCountryCode(whenGoogleSignup)
 - [ ] feature7/editProfile
-- [ ] feature20/fetchMyDonations
+- [ ] feature20/fetchMyProfile(includeDonationHistory)
 
 ## Auth Module
 
-- [ ] feature2/emailLogin
+- [x] feature2/emailLogin
 - [ ] feature4/googleLogin
 - [ ] feature5/restoreAccessToken
 

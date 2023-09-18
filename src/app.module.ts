@@ -4,10 +4,12 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './apis/user/user.module';
+import { AuthModule } from './apis/auth/auth.module';
 
 console.log(process.env.DATABASE_HOST);
 @Module({
   imports: [
+    AuthModule,
     UserModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
