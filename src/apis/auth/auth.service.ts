@@ -1,28 +1,13 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
-import { IAuthUser, IContext } from 'src/common/interfaces/context';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../user/entities/user.entity';
-
-export interface IAuthServiceLogin {
-  email: string;
-  password: string;
-  context: IContext;
-}
-
-export interface IAuthServiceGetAccessToken {
-  user: User | IAuthUser['user'];
-}
-
-export interface IAuthServiceSetRefreshToken {
-  user: User;
-  context: IContext;
-}
-
-export interface IAuthServiceRestoreAccessToken {
-  user: IAuthUser['user'];
-}
+import {
+  IAuthServiceGetAccessToken,
+  IAuthServiceLogin,
+  IAuthServiceRestoreAccessToken,
+  IAuthServiceSetRefreshToken,
+} from './interfaces/auth-service.interface';
 
 @Injectable()
 export class AuthService {
