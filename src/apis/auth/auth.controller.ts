@@ -32,6 +32,12 @@ export class AuthController {
     }
 
     this.authService.setRefreshToken({ user, res });
+
+    // if user.countryCode is Empty
+    // if (!user.countryCode) {
+    //   res.redirect(process.env.PASSPORT_OAUTH_GOOGLE_REDIRECT_URL);
+    // }
+
     res.redirect(process.env.PASSPORT_OAUTH_GOOGLE_REDIRECT_URL);
   }
 }
