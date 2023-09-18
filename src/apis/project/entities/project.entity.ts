@@ -1,8 +1,12 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { ProjectCategory } from 'src/apis/projectCategory/entities/projectCategory.entity';
+import { User } from 'src/apis/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -32,4 +36,12 @@ export class Project {
   @CreateDateColumn()
   @Field(() => Date)
   created_at: Date;
+
+  @JoinColumn({ name: 'productCategory_id' })
+  @ManyToOne(() => ProjectCategory)
+  projectCategory: ProjectCategory;
+
+  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => User)
+  user: User;
 }

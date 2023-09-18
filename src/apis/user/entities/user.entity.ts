@@ -1,8 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { CountryCode } from 'src/apis/countryCode/entities/countryCode.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -36,4 +39,8 @@ export class User {
   @CreateDateColumn()
   @Field(() => Date)
   createdAt: Date;
+
+  @JoinColumn({ name: 'country_code' })
+  @ManyToOne(() => CountryCode)
+  countryCode: CountryCode;
 }

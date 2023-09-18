@@ -1,8 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Project } from 'src/apis/project/entities/project.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -20,4 +23,8 @@ export class UpdatedProject {
   @CreateDateColumn()
   @Field(() => Date)
   created_at: Date;
+
+  @JoinColumn({ name: 'project_id' })
+  @ManyToOne(() => Project)
+  project: Project;
 }

@@ -38,7 +38,7 @@
 
 ## Donation Module
 
-- [ ] feature19/createDonation(paymentService)
+- [ ] feature19/createDonation
 
 ## Search Module
 

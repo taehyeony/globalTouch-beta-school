@@ -1,8 +1,12 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Project } from 'src/apis/project/entities/project.entity';
+import { User } from 'src/apis/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -20,4 +24,12 @@ export class Comment {
   @CreateDateColumn()
   @Field(() => Date)
   created_at: Date;
+
+  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => User)
+  user: User;
+
+  @JoinColumn({ name: 'project_id' })
+  @ManyToOne(() => Project)
+  project: Project;
 }
