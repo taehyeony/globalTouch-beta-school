@@ -4,7 +4,7 @@
 
 ## User Module
 
-- [ ] feature1/signUpwithEmail
+- [x] feature1/signUpwithEmail
 - [ ] feature3/signUpwithGoogle
 - [ ] feature6/updateUserCountryCode(whenGoogleSignup)
 - [ ] feature7/editProfile

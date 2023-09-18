@@ -20,20 +20,19 @@ export class User {
   @Field(() => String)
   email: string;
 
-  @Column({ unique: true, type: 'varchar', length: 255 })
-  @Field(() => String)
+  @Column({ unique: true, type: 'varchar', length: 255, nullable: true })
+  @Field(() => String, { nullable: true })
   google_id: string;
 
   @Column({ type: 'varchar', length: 255 })
-  @Field(() => String)
   password_hash: string;
 
   @Column({ type: 'varchar', length: 100 })
   @Field(() => String)
   name: string;
 
-  @Column({ type: 'text' })
-  @Field(() => String)
+  @Column({ type: 'text', nullable: true })
+  @Field(() => String, { nullable: true })
   profile_image_url: string;
 
   @CreateDateColumn()
