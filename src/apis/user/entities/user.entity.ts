@@ -20,11 +20,7 @@ export class User {
   @Field(() => String)
   email: string;
 
-  @Column({ unique: true, type: 'varchar', length: 255, nullable: true })
-  @Field(() => String, { nullable: true })
-  google_id: string;
-
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   password_hash: string;
 
   @Column({ type: 'varchar', length: 100 })
@@ -40,6 +36,6 @@ export class User {
   createdAt: Date;
 
   @JoinColumn({ name: 'country_code' })
-  @ManyToOne(() => CountryCode)
+  @ManyToOne(() => CountryCode, { nullable: true })
   countryCode: CountryCode;
 }

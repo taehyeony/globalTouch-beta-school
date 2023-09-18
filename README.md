@@ -5,41 +5,40 @@
 ## User Module
 
 - [x] feature1/signUpwithEmail
-- [ ] feature3/signUpwithGoogle
-- [ ] feature6/updateUserCountryCode(whenGoogleSignup)
-- [ ] feature7/editProfile
-- [ ] feature20/fetchMyProfile(includeDonationHistory)
+- [ ] feature5/updateUserCountryCode(whenGoogleSignup)
+- [ ] feature6/editProfile
+- [ ] feature19/fetchMyProfile(includeDonationHistory)
 
 ## Auth Module
 
 - [x] feature2/emailLogin
-- [ ] feature4/googleLogin
-- [ ] feature5/restoreAccessToken
+- [x] feature3/googleLogin
+- [ ] feature4/restoreAccessToken
 
 ## Project Module
 
-- [ ] feature8/createPoject(pic max 3)
-- [ ] feature9/fetchProject
-- [ ] feature10/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
-- [ ] feature11/fetchNewProjects(pageNation-pageSize:4, sortByTime)
-- [ ] feature12/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
+- [ ] feature7/createPoject(pic max 3)
+- [ ] feature8/fetchProject
+- [ ] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
+- [ ] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
+- [ ] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
 
 ## Comment Module
 
-- [ ] feature13/createComment
-- [ ] feature14/fetchComments(sortByTime)
-- [ ] feature15/updateComment
-- [ ] feature16/deleteComment
+- [ ] feature12/createComment
+- [ ] feature13/fetchComments(sortByTime)
+- [ ] feature14/updateComment
+- [ ] feature15/deleteComment
 
 ## UpdatedProject Module
 
-- [ ] feature17/createUpdatedProject
-- [ ] feature18/fetchUpdatedProjects
+- [ ] feature16/createUpdatedProject
+- [ ] feature17/fetchUpdatedProjects
 
 ## Donation Module
 
-- [ ] feature19/createDonation
+- [ ] feature18/createDonation
 
 ## Search Module
 
-- [ ] feature21/search(searchByCategory, sortbyTime)
+- [ ] feature20/search(searchByCategory, sortbyTime)

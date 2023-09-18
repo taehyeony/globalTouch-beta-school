@@ -28,7 +28,7 @@ export class AuthService {
     const isAuth = await bcrypt.compare(password, user.password_hash);
     if (!isAuth) throw new UnprocessableEntityException('Wrong password!');
 
-    this.setRefreshToken({ user, context });
+    this.setRefreshToken({ user, res: context.res });
 
     return this.getAccessToken({ user });
   }
@@ -37,16 +37,13 @@ export class AuthService {
     return this.getAccessToken({ user });
   }
 
-  setRefreshToken({ user, context }: IAuthServiceSetRefreshToken): void {
+  setRefreshToken({ user, res }: IAuthServiceSetRefreshToken): void {
     const refreshToken = this.jwtService.sign(
       { sub: user.user_id },
       { secret: process.env.PASSPORT_JWT_REFRESH_SECRET_KEY, expiresIn: '2w' },
     );
 
-    context.res.setHeader(
-      'set-cookie',
-      `refreshToken=${refreshToken}; path=/;`,
-    );
+    res.setHeader('set-cookie', `refreshToken=${refreshToken}; path=/;`);
   }
 
   getAccessToken({ user }: IAuthServiceGetAccessToken): string {

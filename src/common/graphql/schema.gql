@@ -5,7 +5,6 @@
 type User {
   user_id: String!
   email: String!
-  google_id: String
   name: String!
   profile_image_url: String
   createdAt: DateTime!

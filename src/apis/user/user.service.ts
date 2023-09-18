@@ -2,17 +2,13 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import { SignupWithEmailInput } from './dto/signupWithEmail.input';
 import * as bcrypt from 'bcrypt';
 import { CountryCode } from '../countryCode/entities/countryCode.entity';
-
-export interface IUserServiceCreate {
-  signupWithEmailInput: SignupWithEmailInput;
-}
-
-export interface IUserServiceFindOneByEmail {
-  email: string;
-}
+import {
+  IUserServiceCreate,
+  IUserServiceCreateWithGoogle,
+  IUserServiceFindOneByEmail,
+} from './interfaces/user-service.interface';
 
 @Injectable()
 export class UserService {
@@ -56,6 +52,16 @@ export class UserService {
       ...signupWithEmailInput,
       password_hash: hashedPassword,
       countryCode: foundCountryCode,
+    });
+  }
+
+  async createWithGoogle({
+    name,
+    email,
+  }: IUserServiceCreateWithGoogle): Promise<User> {
+    return this.userRepository.save({
+      name,
+      email,
     });
   }
 }
