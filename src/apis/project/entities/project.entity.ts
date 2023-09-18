@@ -8,14 +8,26 @@ import {
 
 @Entity()
 @ObjectType()
-export class Donation {
+export class Project {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String)
-  donation_id: string;
+  project_id: string;
+
+  @Column({ unique: true, type: 'varchar', length: 255 })
+  @Field(() => String)
+  title: string;
+
+  @Column({ type: 'text' })
+  @Field(() => String)
+  content: string;
 
   @Column({ type: 'int', width: 20 })
   @Field(() => Int)
-  amount_donated: number;
+  amount_required: number;
+
+  @Column({ type: 'int', width: 20, default: 0 })
+  @Field(() => Int)
+  amount_raised: number;
 
   @CreateDateColumn()
   @Field(() => Date)
