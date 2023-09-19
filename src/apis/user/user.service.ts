@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { CountryCode } from '../countryCode/entities/countryCode.entity';
 import {
+  IUpdateUserCountryCode,
   IUserServiceCreate,
   IUserServiceCreateWithGoogle,
   IUserServiceFindOneByEmail,
@@ -62,6 +63,24 @@ export class UserService {
     return this.userRepository.save({
       name,
       email,
+    });
+  }
+
+  async updateUserCountryCode({
+    countryCode,
+    context,
+  }: IUpdateUserCountryCode): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { user_id: context.req.user.user_id },
+    });
+
+    const newCountryCode = await this.countryCodeRepository.findOne({
+      where: { country_code: countryCode },
+    });
+
+    return await this.userRepository.save({
+      ...user,
+      countryCode: newCountryCode,
     });
   }
 }

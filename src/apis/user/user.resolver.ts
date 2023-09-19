@@ -25,4 +25,13 @@ export class UserResolver {
   ): Promise<User> {
     return this.userService.create({ signupWithEmailInput });
   }
+
+  @UseGuards(GqlAuthGuard('access'))
+  @Mutation(() => User)
+  async updateUserCountryCode(
+    @Args('coutryCode') countryCode: string,
+    @Context() context: IContext,
+  ): Promise<User> {
+    return this.userService.updateUserCountryCode({ countryCode, context });
+  }
 }

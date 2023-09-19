@@ -1,3 +1,4 @@
+import { IContext } from 'src/common/interfaces/context';
 import { SignupWithEmailInput } from '../dto/signupWithEmail.input';
 
 export interface IUserServiceCreate {
@@ -11,4 +12,9 @@ export interface IUserServiceFindOneByEmail {
 export interface IUserServiceCreateWithGoogle {
   name: string;
   email: string;
+}
+
+export interface IUpdateUserCountryCode {
+  countryCode: string;
+  context: IContext;
 }

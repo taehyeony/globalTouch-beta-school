@@ -49,7 +49,7 @@ export class AuthService {
   getAccessToken({ user }: IAuthServiceGetAccessToken): string {
     return this.jwtService.sign(
       { sub: user.user_id },
-      { secret: process.env.PASSPORT_JWT_ACCESS_SECRET_KEY, expiresIn: '15s' },
+      { secret: process.env.PASSPORT_JWT_ACCESS_SECRET_KEY, expiresIn: '1d' },
     );
   }
 }
