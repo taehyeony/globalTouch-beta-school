@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -6,13 +6,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class CountryCode {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String)
-  country_code: string;
+  coutryCode_id: string;
 
-  @Column({ type: 'int' })
-  @Field(() => Int)
-  lat: number;
-
-  @Column({ type: 'int' })
-  @Field(() => Int)
-  lng: number;
+  @Column({ type: 'text' })
+  @Field(() => String)
+  name: string;
 }

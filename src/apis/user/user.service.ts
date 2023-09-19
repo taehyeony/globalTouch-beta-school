@@ -41,13 +41,11 @@ export class UserService {
 
     // temporarily, have to make seed file, put dummy data
     await this.countryCodeRepository.save({
-      country_code: 'KR',
-      lat: 14,
-      lng: 12,
+      name: 'KR',
     });
 
     const foundCountryCode = await this.countryCodeRepository.findOne({
-      where: { country_code: signupWithEmailInput.countryCode },
+      where: { name: signupWithEmailInput.countryCode },
     });
 
     return this.userRepository.save({
@@ -76,7 +74,7 @@ export class UserService {
     });
 
     const newCountryCode = await this.countryCodeRepository.findOne({
-      where: { country_code: countryCode },
+      where: { name: countryCode },
     });
 
     return await this.userRepository.save({

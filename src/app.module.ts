@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './apis/user/user.module';
 import { AuthModule } from './apis/auth/auth.module';
+import { JwtAccessStrategy } from './apis/auth/strategies/jwt-access.strategy';
+import { JwtRefreshStrategy } from './apis/auth/strategies/jwt-refresh.strategy';
+import { JwtGoogleStrategy } from './apis/auth/strategies/jwt-social-google.strategy';
 
 console.log(process.env.DATABASE_HOST);
 @Module({
@@ -29,6 +32,6 @@ console.log(process.env.DATABASE_HOST);
       logging: true,
     }),
   ],
-  providers: [],
+  providers: [JwtAccessStrategy, JwtRefreshStrategy, JwtGoogleStrategy],
 })
 export class AppModule {}

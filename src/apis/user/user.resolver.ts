@@ -14,7 +14,7 @@ export class UserResolver {
   @Query(() => String)
   fetchMyProfile(@Context() context: IContext): string {
     console.log('======');
-    console.log(context.req.user);
+    console.log(context.req.user.user_id);
     console.log('======');
     return 'authorization success';
   }
