@@ -23,6 +23,7 @@ type Mutation {
   login(email: String!, password: String!): String!
   restoreAccessToken: String!
   signupWithEmail(signupWithEmailInput: SignupWithEmailInput!): User!
+  updateUserCountryCode(coutryCode: String!): User!
 }
 
 input SignupWithEmailInput {
