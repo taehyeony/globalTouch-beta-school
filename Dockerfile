@@ -6,4 +6,6 @@ WORKDIR /backend
 
 COPY .  /backend/   
 
+RUN npm rebuild bcrypt --build-from-source
+
 CMD yarn start:dev

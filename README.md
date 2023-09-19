@@ -6,7 +6,7 @@
 
 - [x] feature1/signUpwithEmail
 - [x] feature5/updateUserCountryCode(whenGoogleSignup)
-- [ ] feature6/editProfile
+- [x] feature6/editProfile
 - [ ] feature19/fetchMyProfile(includeDonationHistory)
 
 ## Auth Module

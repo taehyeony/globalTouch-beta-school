@@ -14,7 +14,13 @@ export interface IUserServiceCreateWithGoogle {
   email: string;
 }
 
-export interface IUpdateUserCountryCode {
+export interface IUserServiceUpdateUserCountryCode {
   countryCode: string;
+  context: IContext;
+}
+
+export interface IUserServiceEditProfile {
+  name: string;
+  profile_image_url: string;
   context: IContext;
 }

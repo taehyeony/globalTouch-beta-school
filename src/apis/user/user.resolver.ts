@@ -34,4 +34,14 @@ export class UserResolver {
   ): Promise<User> {
     return this.userService.updateUserCountryCode({ countryCode, context });
   }
+
+  @UseGuards(GqlAuthGuard('access'))
+  @Mutation(() => User)
+  async editProfile(
+    @Args('name', { nullable: true }) name: string,
+    @Args('profile_image_url', { nullable: true }) profile_image_url: string,
+    @Context() context: IContext,
+  ): Promise<User> {
+    return this.userService.editProfile({ name, profile_image_url, context });
+  }
 }

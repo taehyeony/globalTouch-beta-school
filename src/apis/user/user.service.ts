@@ -5,10 +5,11 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { CountryCode } from '../countryCode/entities/countryCode.entity';
 import {
-  IUpdateUserCountryCode,
   IUserServiceCreate,
   IUserServiceCreateWithGoogle,
+  IUserServiceEditProfile,
   IUserServiceFindOneByEmail,
+  IUserServiceUpdateUserCountryCode,
 } from './interfaces/user-service.interface';
 
 @Injectable()
@@ -69,7 +70,7 @@ export class UserService {
   async updateUserCountryCode({
     countryCode,
     context,
-  }: IUpdateUserCountryCode): Promise<User> {
+  }: IUserServiceUpdateUserCountryCode): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { user_id: context.req.user.user_id },
     });
@@ -82,5 +83,25 @@ export class UserService {
       ...user,
       countryCode: newCountryCode,
     });
+  }
+
+  async editProfile({
+    name,
+    profile_image_url,
+    context,
+  }: IUserServiceEditProfile): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { user_id: context.req.user.user_id },
+    });
+
+    if (name) {
+      user.name = name;
+    }
+
+    if (profile_image_url) {
+      user.profile_image_url = profile_image_url;
+    }
+
+    return await this.userRepository.save({ ...user });
   }
 }
