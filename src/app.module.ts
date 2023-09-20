@@ -8,12 +8,14 @@ import { AuthModule } from './apis/auth/auth.module';
 import { JwtAccessStrategy } from './apis/auth/strategies/jwt-access.strategy';
 import { JwtRefreshStrategy } from './apis/auth/strategies/jwt-refresh.strategy';
 import { JwtGoogleStrategy } from './apis/auth/strategies/jwt-social-google.strategy';
+import { ProjectModule } from './apis/project/project.module';
 
 console.log(process.env.DATABASE_HOST);
 @Module({
   imports: [
     AuthModule,
     UserModule,
+    ProjectModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
