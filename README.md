@@ -17,7 +17,7 @@
 
 ## Project Module
 
-- [ ] feature7/createPoject(pic max 3)
+- [x] feature7/createProject(pic max 3)
 - [ ] feature8/fetchProject
 - [ ] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
 - [ ] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)

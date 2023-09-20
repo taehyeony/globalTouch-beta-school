@@ -4,7 +4,7 @@ import { Project } from './entities/project.entity';
 import { Repository } from 'typeorm';
 import { IProjectServiceCreate } from './interfaces/project-service.interface';
 import { User } from '../user/entities/user.entity';
-import { ProjectCategory } from '../projectCategory/entities/projectCategory.entity';
+import { ProjectCategory } from './../projectCategory/entities/projectCategory.entity';
 
 @Injectable()
 export class ProjectService {
@@ -19,9 +19,14 @@ export class ProjectService {
     private readonly projectCategoryRepository: Repository<ProjectCategory>,
   ) {
     // 더미 데이터, 자료 수집 이후에 삭제
-    this.projectCategoryRepository.save({
-      name: 'AA',
+    const projectCategory = this.projectCategoryRepository.findOne({
+      where: { name: 'AA' },
     });
+    if (!projectCategory) {
+      this.projectCategoryRepository.save({
+        name: 'AA',
+      });
+    }
   }
 
   async create({
