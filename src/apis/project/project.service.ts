@@ -68,6 +68,7 @@ export class ProjectService {
 
   async getOneById({ projectId }: IProjectServiceGetOneById): Promise<Project> {
     return await this.projectRepository.findOne({
+      relations: ['projectCategory', 'user'],
       where: { project_id: projectId },
     });
   }
