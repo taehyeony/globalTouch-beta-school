@@ -9,3 +9,6 @@ export interface IProjectServiceCreate {
 export interface IProjectServiceGetOneById {
   projectId: string;
 }
+export interface IProjectServiceGetOrderByTime {
+  page: number;
+}

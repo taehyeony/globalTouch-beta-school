@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import {
   IProjectServiceCreate,
   IProjectServiceGetOneById,
+  IProjectServiceGetOrderByTime,
 } from './interfaces/project-service.interface';
 import { User } from '../user/entities/user.entity';
 import { ProjectCategory } from './../projectCategory/entities/projectCategory.entity';
@@ -73,7 +74,7 @@ export class ProjectService {
     });
   }
 
-  async getOrderByTime(page: number): Promise<any> {
+  async getOrderByTime({ page }: IProjectServiceGetOrderByTime): Promise<any> {
     const take = 4;
     const projects = await this.projectRepository.findAndCount({
       relations: ['projectCategory', 'user'],

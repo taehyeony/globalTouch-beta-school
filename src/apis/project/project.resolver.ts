@@ -33,7 +33,7 @@ export class ProjectResolver {
 
   @Query(() => [Project])
   fetchNewProjects(@Args('page') page: number): Promise<Project[]> {
-    return this.projectService.getOrderByTime(page);
+    return this.projectService.getOrderByTime({ page });
   }
 
   @Query(() => [Project])
