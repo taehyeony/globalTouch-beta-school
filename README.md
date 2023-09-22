@@ -18,9 +18,9 @@
 ## Project Module
 
 - [x] feature7/createProject(pic max 3)
-- [X] feature8/fetchProject
+- [x] feature8/fetchProject
 - [ ] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
-- [ ] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
+- [x] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
 - [ ] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
 
 ## Comment Module

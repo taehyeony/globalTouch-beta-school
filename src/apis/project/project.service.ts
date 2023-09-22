@@ -74,7 +74,7 @@ export class ProjectService {
   }
 
   async getOrderByTime(page: number): Promise<any> {
-    const take = 5;
+    const take = 4;
     const projects = await this.projectRepository.findAndCount({
       relations: ['projectCategory', 'user'],
       order: { created_at: 'DESC' },
