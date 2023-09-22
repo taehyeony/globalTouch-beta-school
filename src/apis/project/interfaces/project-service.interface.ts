@@ -12,3 +12,8 @@ export interface IProjectServiceGetOneById {
 export interface IProjectServiceGetOrderByTime {
   page: number;
 }
+
+export interface IProjectServiceGetByCountryCode {
+  countryCodeId: string;
+  page: number;
+}

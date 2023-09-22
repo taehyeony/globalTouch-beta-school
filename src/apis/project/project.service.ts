@@ -85,10 +85,7 @@ export class ProjectService {
     return projects[0];
   }
 
-  async getByCountryCode(
-    countryCodeId: string,
-    page: number,
-  ): Promise<Project[]> {
+  async getByCountryCode({ countryCodeId, page }): Promise<Project[]> {
     const take = 4;
     const projects = await this.projectRepository.findAndCount({
       relations: ['projectCategory', 'user'],

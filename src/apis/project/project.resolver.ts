@@ -41,6 +41,6 @@ export class ProjectResolver {
     @Args('countryCodeId') countryCodeId: string,
     @Args('page') page: number,
   ): Promise<Project[]> {
-    return this.projectService.getByCountryCode(countryCodeId, page);
+    return this.projectService.getByCountryCode({ countryCodeId, page });
   }
 }
