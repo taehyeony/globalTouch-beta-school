@@ -39,9 +39,11 @@ export class Project {
 
   @JoinColumn({ name: 'productCategory_id' })
   @ManyToOne(() => ProjectCategory)
+  @Field(() => ProjectCategory)
   projectCategory: ProjectCategory;
 
   @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
+  @Field(() => User)
   user: User;
 }

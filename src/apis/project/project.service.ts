@@ -8,6 +8,7 @@ import {
 } from './interfaces/project-service.interface';
 import { User } from '../user/entities/user.entity';
 import { ProjectCategory } from './../projectCategory/entities/projectCategory.entity';
+import { ProjectImageService } from '../projectImage/projectImage.service';
 
 @Injectable()
 export class ProjectService {
@@ -20,20 +21,13 @@ export class ProjectService {
 
     @InjectRepository(ProjectCategory)
     private readonly projectCategoryRepository: Repository<ProjectCategory>,
-  ) {
-    // 더미 데이터, 자료 수집 이후에 삭제
-    const projectCategory = this.projectCategoryRepository.findOne({
-      where: { name: 'AA' },
-    });
-    if (!projectCategory) {
-      this.projectCategoryRepository.save({
-        name: 'AA',
-      });
-    }
-  }
+
+    private readonly projectImageService: ProjectImageService,
+  ) {}
 
   async create({
     createProjectInput,
+    projectImageUrls,
     context,
   }: IProjectServiceCreate): Promise<Project> {
     const user = await this.userRepository.findOne({
@@ -51,12 +45,25 @@ export class ProjectService {
     }
 
     const project = {
-      //context.req.user.user_id,
-      user: user, //user에 User 객체를 findOne 해서 넣어줘야함
+      user: user,
       projectCategory: projectCategory,
       ...createProjectInput,
     };
-    return this.projectRepository.save(project);
+    const return_project = await this.projectRepository.save(project);
+
+    //url 저장
+    const imageUrl = projectImageUrls.split('https://').slice(1);
+    if (imageUrl.length > 3) {
+      throw new Error('Too many image(max 3 pic)');
+    }
+    await imageUrl.map((url) => {
+      this.projectImageService.create({
+        projectImageUrl: url,
+        projectTitle: project.title,
+      });
+    });
+
+    return return_project;
   }
 
   async getOneById({ projectId }: IProjectServiceGetOneById): Promise<Project> {

@@ -3,6 +3,7 @@ import { CreateProjectInput } from '../dto/createProject.input';
 
 export interface IProjectServiceCreate {
   createProjectInput: CreateProjectInput;
+  projectImageUrls: string;
   context: IContext;
 }
 export interface IProjectServiceGetOneById {

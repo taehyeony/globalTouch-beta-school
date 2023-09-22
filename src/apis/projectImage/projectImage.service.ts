@@ -19,16 +19,15 @@ export class ProjectImageService {
     projectImageUrl,
     projectTitle,
   }: IProjectImageUrlInput): Promise<ProjectImage> {
-    console.log(projectTitle);
     const project = await this.projectRepository.findOne({
       where: { title: projectTitle },
     });
     if (!project) {
       throw new Error('Not found Project');
     }
-    return this.projectImageRepository.save({
-      project: project,
+    return await this.projectImageRepository.save({
       image_url: projectImageUrl,
+      project: project,
     });
   }
 }
