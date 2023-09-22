@@ -5,3 +5,6 @@ export interface IProjectServiceCreate {
   createProjectInput: CreateProjectInput;
   context: IContext;
 }
+export interface IProjectServiceGetOneById {
+  projectId: string;
+}

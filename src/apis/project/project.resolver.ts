@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ProjectService } from './project.service';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { Project } from './entities/project.entity';
@@ -6,7 +6,6 @@ import { CreateProjectInput } from './dto/createProject.input';
 import { UseGuards } from '@nestjs/common';
 import { IContext } from 'src/common/interfaces/context';
 import { ProjectImageService } from '../projectImage/projectImage.service';
-// import { ProjectImage } from '../projectImage/entities/projectImage.entity';
 
 @Resolver()
 export class ProjectResolver {
@@ -48,7 +47,11 @@ export class ProjectResolver {
         projectTitle: createProjectInput.title,
       });
     }
-
     return returnProject;
+  }
+
+  @Query(() => Project)
+  fetchProject(@Args('projectId') projectId: string): Promise<Project> {
+    return this.projectService.getOneById({ projectId });
   }
 }

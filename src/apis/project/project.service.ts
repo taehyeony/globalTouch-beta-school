@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Project } from './entities/project.entity';
 import { Repository } from 'typeorm';
-import { IProjectServiceCreate } from './interfaces/project-service.interface';
+import {
+  IProjectServiceCreate,
+  IProjectServiceGetOneById,
+} from './interfaces/project-service.interface';
 import { User } from '../user/entities/user.entity';
 import { ProjectCategory } from './../projectCategory/entities/projectCategory.entity';
 
@@ -54,5 +57,11 @@ export class ProjectService {
       ...createProjectInput,
     };
     return this.projectRepository.save(project);
+  }
+
+  async getOneById({ projectId }: IProjectServiceGetOneById): Promise<Project> {
+    return await this.projectRepository.findOne({
+      where: { project_id: projectId },
+    });
   }
 }
