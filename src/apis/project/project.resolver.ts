@@ -30,4 +30,9 @@ export class ProjectResolver {
   fetchProject(@Args('projectId') projectId: string): Promise<Project> {
     return this.projectService.getOneById({ projectId });
   }
+
+  @Query(() => [Project])
+  fetchNewProjects(@Args('page') page: number): Promise<Project[]> {
+    return this.projectService.getOrderByTime(page);
+  }
 }

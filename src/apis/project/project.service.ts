@@ -72,4 +72,15 @@ export class ProjectService {
       where: { project_id: projectId },
     });
   }
+
+  async getOrderByTime(page: number): Promise<any> {
+    const take = 5;
+    const projects = await this.projectRepository.findAndCount({
+      relations: ['projectCategory', 'user'],
+      order: { created_at: 'DESC' },
+      take: take,
+      skip: (page - 1) * take,
+    });
+    return projects[0];
+  }
 }
