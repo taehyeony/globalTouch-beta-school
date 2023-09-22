@@ -83,4 +83,25 @@ export class ProjectService {
     });
     return projects[0];
   }
+
+  async getByCountryCode(
+    countryCodeId: string,
+    page: number,
+  ): Promise<Project[]> {
+    const take = 4;
+    const projects = await this.projectRepository.findAndCount({
+      relations: ['projectCategory', 'user'],
+      where: {
+        user: {
+          countryCode: {
+            coutryCode_id: countryCodeId,
+          },
+        },
+      },
+      order: { created_at: 'DESC' },
+      take: take,
+      skip: (page - 1) * take,
+    });
+    return projects[0];
+  }
 }

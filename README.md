@@ -21,7 +21,7 @@
 - [x] feature8/fetchProject
 - [ ] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
 - [x] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
-- [ ] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
+- [x] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
 
 ## Comment Module
 

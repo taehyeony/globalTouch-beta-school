@@ -35,4 +35,12 @@ export class ProjectResolver {
   fetchNewProjects(@Args('page') page: number): Promise<Project[]> {
     return this.projectService.getOrderByTime(page);
   }
+
+  @Query(() => [Project])
+  fetchProjectsByCountry(
+    @Args('countryCodeId') countryCodeId: string,
+    @Args('page') page: number,
+  ): Promise<Project[]> {
+    return this.projectService.getByCountryCode(countryCodeId, page);
+  }
 }

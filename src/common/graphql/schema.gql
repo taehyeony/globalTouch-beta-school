@@ -35,6 +35,7 @@ type Query {
   fetchMyProfile: String!
   fetchProject(projectId: String!): Project!
   fetchNewProjects(page: Float!): [Project!]!
+  fetchProjectsByCountry(countryCodeId: String!, page: Float!): [Project!]!
 }
 
 type Mutation {
