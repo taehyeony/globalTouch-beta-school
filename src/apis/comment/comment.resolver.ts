@@ -37,4 +37,16 @@ export class CommentResolver {
       context,
     });
   }
+
+  @UseGuards(GqlAuthGuard('access'))
+  @Mutation(() => Boolean)
+  async deleteComment(
+    @Args('commentId') commentId: string,
+    @Context() context: IContext,
+  ): Promise<boolean> {
+    return this.commentService.deleteComment({
+      commentId,
+      context,
+    });
+  }
 }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {
   ICommentServiceCreate,
+  ICommentServiceDelete,
   ICommentServiceGetOrderByTime,
   ICommentServiceUpdate,
 } from './interfaces/comment-service.interface';
@@ -69,6 +70,9 @@ export class CommentService {
       relations: ['user'],
       where: { comment_id: commentId },
     });
+    if (!comment) {
+      throw new Error('Not found comment');
+    }
     if (comment.user.user_id != context.req.user.user_id) {
       throw new Error('Not authorized');
     }
@@ -77,5 +81,27 @@ export class CommentService {
       ...comment,
       comment_content: updateContent,
     });
+  }
+
+  async deleteComment({
+    commentId,
+    context,
+  }: ICommentServiceDelete): Promise<boolean> {
+    const comment = await this.commentRepository.findOne({
+      relations: ['user'],
+      where: { comment_id: commentId },
+    });
+    console.log(comment.comment_content);
+    if (!comment) {
+      throw new Error('Not found comment');
+    }
+    if (comment.user.user_id != context.req.user.user_id) {
+      throw new Error('Not authorized');
+    }
+    const result = await this.commentRepository.remove(comment);
+    if (!result) {
+      return false;
+    }
+    return true;
   }
 }

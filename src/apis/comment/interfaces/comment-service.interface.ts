@@ -15,3 +15,7 @@ export interface ICommentServiceUpdate {
   updateContent: string;
   context: IContext;
 }
+export interface ICommentServiceDelete {
+  commentId: string;
+  context: IContext;
+}

@@ -27,7 +27,7 @@
 
 - [x] feature12/createComment
 - [x] feature13/fetchComments(pageNation-pageSize:10, sortByTime)
-- [ ] feature14/updateComment
+- [x] feature14/updateComment
 - [ ] feature15/deleteComment
 
 ## UpdatedProject Module

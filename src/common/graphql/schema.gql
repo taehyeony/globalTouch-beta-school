@@ -56,6 +56,7 @@ type Mutation {
   createProject(createProjectInput: CreateProjectInput!, projectImageUrls: String): Project!
   createComment(commentContent: String!, projectId: String!): Comment!
   updateComment(commentId: String!, updateContent: String!): Comment!
+  deleteComment(commentId: String!): Boolean!
 }
 
 input SignupWithEmailInput {
