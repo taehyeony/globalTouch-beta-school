@@ -5,3 +5,7 @@ export interface ICommentServiceCreate {
   projectId: string;
   context: IContext;
 }
+
+export interface ICommentServiceGetOrderByTime {
+  page: number;
+}

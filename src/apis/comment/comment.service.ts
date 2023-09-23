@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ICommentServiceCreate } from './interfaces/comment-service.interface';
+import {
+  ICommentServiceCreate,
+  ICommentServiceGetOrderByTime,
+} from './interfaces/comment-service.interface';
 import { User } from '../user/entities/user.entity';
 import { Project } from '../project/entities/project.entity';
 import { Comment } from './entities/comment.entity';
@@ -41,5 +44,18 @@ export class CommentService {
       user,
       project,
     });
+  }
+
+  async getOrderByTime({
+    page,
+  }: ICommentServiceGetOrderByTime): Promise<Comment[]> {
+    const take = 10;
+    const comments = await this.commentRepository.findAndCount({
+      relations: ['project', 'user'],
+      order: { created_at: 'DESC' },
+      take: take,
+      skip: (page - 1) * take,
+    });
+    return comments[0];
   }
 }
