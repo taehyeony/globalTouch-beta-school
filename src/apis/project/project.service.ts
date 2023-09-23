@@ -74,7 +74,9 @@ export class ProjectService {
     });
   }
 
-  async getOrderByTime({ page }: IProjectServiceGetOrderByTime): Promise<any> {
+  async getOrderByTime({
+    page,
+  }: IProjectServiceGetOrderByTime): Promise<Project[]> {
     const take = 4;
     const projects = await this.projectRepository.findAndCount({
       relations: ['projectCategory', 'user'],
