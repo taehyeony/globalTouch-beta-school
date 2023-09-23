@@ -25,7 +25,7 @@
 
 ## Comment Module
 
-- [ ] feature12/createComment
+- [x] feature12/createComment
 - [ ] feature13/fetchComments(pageNation-pageSize:10, sortByTime)
 - [ ] feature14/updateComment
 - [ ] feature15/deleteComment

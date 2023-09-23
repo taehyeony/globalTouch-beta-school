@@ -31,6 +31,14 @@ type Project {
   user: User!
 }
 
+type Comment {
+  comment_id: String!
+  comment_content: String!
+  created_at: DateTime!
+  user: User!
+  project: Project!
+}
+
 type Query {
   fetchMyProfile: String!
   fetchProject(projectId: String!): Project!
@@ -45,6 +53,7 @@ type Mutation {
   updateUserCountryCode(coutryCode: String!): User!
   editProfile(name: String, profile_image_url: String): User!
   createProject(createProjectInput: CreateProjectInput!, projectImageUrls: String): Project!
+  createComment(commentContent: String!, projectId: String!): Comment!
 }
 
 input SignupWithEmailInput {

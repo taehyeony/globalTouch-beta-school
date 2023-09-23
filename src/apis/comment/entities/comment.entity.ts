@@ -27,9 +27,11 @@ export class Comment {
 
   @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
+  @Field(() => User)
   user: User;
 
   @JoinColumn({ name: 'project_id' })
   @ManyToOne(() => Project)
+  @Field(() => Project)
   project: Project;
 }
