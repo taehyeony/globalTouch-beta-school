@@ -91,7 +91,6 @@ export class CommentService {
       relations: ['user'],
       where: { comment_id: commentId },
     });
-    console.log(comment.comment_content);
     if (!comment) {
       throw new Error('Not found comment');
     }
