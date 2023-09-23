@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import {
   ICommentServiceCreate,
   ICommentServiceGetOrderByTime,
+  ICommentServiceUpdate,
 } from './interfaces/comment-service.interface';
 import { User } from '../user/entities/user.entity';
 import { Project } from '../project/entities/project.entity';
@@ -57,5 +58,24 @@ export class CommentService {
       skip: (page - 1) * take,
     });
     return comments[0];
+  }
+
+  async updateComment({
+    commentId,
+    updateContent,
+    context,
+  }: ICommentServiceUpdate): Promise<Comment> {
+    const comment = await this.commentRepository.findOne({
+      relations: ['user'],
+      where: { comment_id: commentId },
+    });
+    if (comment.user.user_id != context.req.user.user_id) {
+      throw new Error('Not authorized');
+    }
+
+    return this.commentRepository.save({
+      ...comment,
+      comment_content: updateContent,
+    });
   }
 }

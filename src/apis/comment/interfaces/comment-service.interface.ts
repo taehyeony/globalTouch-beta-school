@@ -9,3 +9,9 @@ export interface ICommentServiceCreate {
 export interface ICommentServiceGetOrderByTime {
   page: number;
 }
+
+export interface ICommentServiceUpdate {
+  commentId: string;
+  updateContent: string;
+  context: IContext;
+}

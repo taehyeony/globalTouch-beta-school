@@ -23,4 +23,18 @@ export class CommentResolver {
   async fetchComments(@Args('page') page: number): Promise<Comment[]> {
     return this.commentService.getOrderByTime({ page });
   }
+
+  @UseGuards(GqlAuthGuard('access'))
+  @Mutation(() => Comment)
+  async updateComment(
+    @Args('commentId') commentId: string,
+    @Args('updateContent') updateContent: string,
+    @Context() context: IContext,
+  ) {
+    return this.commentService.updateComment({
+      commentId,
+      updateContent,
+      context,
+    });
+  }
 }

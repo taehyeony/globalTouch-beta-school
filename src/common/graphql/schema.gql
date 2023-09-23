@@ -55,6 +55,7 @@ type Mutation {
   editProfile(name: String, profile_image_url: String): User!
   createProject(createProjectInput: CreateProjectInput!, projectImageUrls: String): Project!
   createComment(commentContent: String!, projectId: String!): Comment!
+  updateComment(commentId: String!, updateContent: String!): Comment!
 }
 
 input SignupWithEmailInput {
