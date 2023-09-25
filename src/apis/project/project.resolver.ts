@@ -27,17 +27,17 @@ export class ProjectResolver {
   }
 
   @Query(() => Project)
-  fetchProject(@Args('projectId') projectId: string): Promise<Project> {
+  async fetchProject(@Args('projectId') projectId: string): Promise<Project> {
     return this.projectService.getOneById({ projectId });
   }
 
   @Query(() => [Project])
-  fetchNewProjects(@Args('page') page: number): Promise<Project[]> {
+  async fetchNewProjects(@Args('page') page: number): Promise<Project[]> {
     return this.projectService.getOrderByTime({ page });
   }
 
   @Query(() => [Project])
-  fetchProjectsByCountry(
+  async fetchProjectsByCountry(
     @Args('countryCodeId') countryCodeId: string,
     @Args('page') page: number,
   ): Promise<Project[]> {
