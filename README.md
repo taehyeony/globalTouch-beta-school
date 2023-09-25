@@ -19,7 +19,7 @@
 
 - [x] feature7/createProject(pic max 3)
 - [x] feature8/fetchProject
-- [ ] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
+- [x] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
 - [x] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
 - [x] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
 
