@@ -26,6 +26,7 @@ type Project {
   content: String!
   amount_required: Int!
   amount_raised: Int!
+  count_donors: Int!
   created_at: DateTime!
   projectCategory: ProjectCategory!
   user: User!
@@ -44,6 +45,7 @@ type Query {
   fetchProject(projectId: String!): Project!
   fetchNewProjects(page: Float!): [Project!]!
   fetchProjectsByCountry(countryCodeId: String!, page: Float!): [Project!]!
+  fetchPopularProjects(page: Float!): [Project!]!
   fetchComments(page: Float!): [Comment!]!
 }
 

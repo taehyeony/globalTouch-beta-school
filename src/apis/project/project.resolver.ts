@@ -43,4 +43,9 @@ export class ProjectResolver {
   ): Promise<Project[]> {
     return this.projectService.getByCountryCode({ countryCodeId, page });
   }
+
+  @Query(() => [Project])
+  async fetchPopularProjects(@Args('page') page: number) {
+    return this.projectService.getOrderByDonors({ page });
+  }
 }

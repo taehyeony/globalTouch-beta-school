@@ -10,6 +10,7 @@ import {
 import { User } from '../user/entities/user.entity';
 import { ProjectCategory } from './../projectCategory/entities/projectCategory.entity';
 import { ProjectImageService } from '../projectImage/projectImage.service';
+import { Donation } from '../donation/entities/donation.entity';
 
 @Injectable()
 export class ProjectService {
@@ -22,6 +23,9 @@ export class ProjectService {
 
     @InjectRepository(ProjectCategory)
     private readonly projectCategoryRepository: Repository<ProjectCategory>,
+
+    @InjectRepository(Donation)
+    private readonly donationRepository: Repository<Donation>,
 
     private readonly projectImageService: ProjectImageService,
   ) {}
@@ -99,6 +103,17 @@ export class ProjectService {
         },
       },
       order: { created_at: 'DESC' },
+      take: take,
+      skip: (page - 1) * take,
+    });
+    return projects[0];
+  }
+
+  async getOrderByDonors({ page }): Promise<Project[]> {
+    const take = 4;
+    const projects = await this.projectRepository.findAndCount({
+      relations: ['projectCategory', 'user'],
+      order: { count_donors: 'DESC' },
       take: take,
       skip: (page - 1) * take,
     });
