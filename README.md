@@ -33,7 +33,7 @@
 ## UpdatedProject Module
 
 - [x] feature16/createUpdatedProject
-- [ ] feature17/fetchUpdatedProjects
+- [x] feature17/fetchUpdatedProjects
 
 ## Donation Module
 
