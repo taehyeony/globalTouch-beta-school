@@ -10,6 +10,7 @@ import { JwtRefreshStrategy } from './apis/auth/strategies/jwt-refresh.strategy'
 import { JwtGoogleStrategy } from './apis/auth/strategies/jwt-social-google.strategy';
 import { ProjectModule } from './apis/project/project.module';
 import { CommentModule } from './apis/comment/comment.module';
+import { UpdatedProjectModule } from './apis/updatedProject/updatedProject.module';
 
 console.log(process.env.DATABASE_HOST);
 @Module({
@@ -18,6 +19,7 @@ console.log(process.env.DATABASE_HOST);
     UserModule,
     ProjectModule,
     CommentModule,
+    UpdatedProjectModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

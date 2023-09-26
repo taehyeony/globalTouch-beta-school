@@ -40,6 +40,12 @@ type Comment {
   project: Project!
 }
 
+type UpdatedProject {
+  updatedProject_id: String!
+  content: String!
+  created_at: DateTime!
+}
+
 type Query {
   fetchMyProfile: String!
   fetchProject(projectId: String!): Project!
@@ -59,6 +65,7 @@ type Mutation {
   createComment(commentContent: String!, projectId: String!): Comment!
   updateComment(commentId: String!, updateContent: String!): Comment!
   deleteComment(commentId: String!): Boolean!
+  createUpdatedProject(content: String!, projectId: String!): UpdatedProject!
 }
 
 input SignupWithEmailInput {
