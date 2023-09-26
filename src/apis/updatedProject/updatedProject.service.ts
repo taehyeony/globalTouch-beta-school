@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { UpdatedProject } from './entities/updatedProject.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IUpdatedServiceCreate } from './interfaces/updatedProject-service.interface';
+import {
+  IGetUpdatedProject,
+  IUpdatedServiceCreate,
+} from './interfaces/updatedProject-service.interface';
 import { User } from '../user/entities/user.entity';
 import { Project } from './../project/entities/project.entity';
 @Injectable()
@@ -42,6 +45,19 @@ export class UpdatedProjectService {
     return this.updatedProjectRepository.save({
       content,
       project,
+    });
+  }
+
+  async getUpdatedProject({
+    projectId,
+  }: IGetUpdatedProject): Promise<UpdatedProject[]> {
+    return await this.updatedProjectRepository.find({
+      relations: ['project'],
+      where: {
+        project: {
+          project_id: projectId,
+        },
+      },
     });
   }
 }

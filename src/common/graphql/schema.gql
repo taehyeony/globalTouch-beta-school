@@ -53,6 +53,7 @@ type Query {
   fetchProjectsByCountry(countryCodeId: String!, page: Float!): [Project!]!
   fetchPopularProjects(page: Float!): [Project!]!
   fetchComments(page: Float!): [Comment!]!
+  fetchUpdatedProjects(projectId: String!): [UpdatedProject!]!
 }
 
 type Mutation {

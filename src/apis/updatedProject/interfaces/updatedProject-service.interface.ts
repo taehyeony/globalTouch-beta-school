@@ -5,3 +5,7 @@ export interface IUpdatedServiceCreate {
   projectId: string;
   context: IContext;
 }
+
+export interface IGetUpdatedProject {
+  projectId: string;
+}

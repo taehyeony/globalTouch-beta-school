@@ -1,4 +1,4 @@
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UpdatedProjectService } from './updatedProject.service';
 import { UpdatedProject } from './entities/updatedProject.entity';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
@@ -20,6 +20,15 @@ export class UpdatedProjectResolver {
       content,
       projectId,
       context,
+    });
+  }
+
+  @Query(() => [UpdatedProject])
+  async fetchUpdatedProjects(
+    @Args('projectId') projectId: string,
+  ): Promise<UpdatedProject[]> {
+    return this.updatedProjectService.getUpdatedProject({
+      projectId,
     });
   }
 }
