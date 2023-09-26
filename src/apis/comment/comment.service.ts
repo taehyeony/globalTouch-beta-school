@@ -10,6 +10,7 @@ import {
 import { User } from '../user/entities/user.entity';
 import { Project } from '../project/entities/project.entity';
 import { Comment } from './entities/comment.entity';
+import { Donation } from '../donation/entities/donation.entity';
 
 @Injectable()
 export class CommentService {
@@ -22,6 +23,9 @@ export class CommentService {
 
     @InjectRepository(Project)
     private readonly projectRepository: Repository<Project>,
+
+    @InjectRepository(Donation)
+    private readonly donationRepository: Repository<Donation>,
   ) {}
 
   async create({
@@ -40,6 +44,17 @@ export class CommentService {
     });
     if (!project) {
       throw new Error('Not found project');
+    }
+    const checkDonation = await this.donationRepository.findOne({
+      relations: ['user', 'project'],
+      where: {
+        donation_status: 'COMPLETED',
+        user: { user_id: context.req.user.user_id },
+        project: { project_id: projectId },
+      },
+    });
+    if (!checkDonation) {
+      throw new Error('Not authorized');
     }
     return this.commentRepository.save({
       comment_content,
