@@ -37,7 +37,7 @@
 
 ## Donation Module
 
-- [ ] feature18/createDonation
+- [x] feature18/createDonation
 
 ## Search Module
 

@@ -11,6 +11,7 @@ import { JwtGoogleStrategy } from './apis/auth/strategies/jwt-social-google.stra
 import { ProjectModule } from './apis/project/project.module';
 import { CommentModule } from './apis/comment/comment.module';
 import { UpdatedProjectModule } from './apis/updatedProject/updatedProject.module';
+import { DonationModule } from './apis/donation/donation.module';
 
 console.log(process.env.DATABASE_HOST);
 @Module({
@@ -20,6 +21,7 @@ console.log(process.env.DATABASE_HOST);
     ProjectModule,
     CommentModule,
     UpdatedProjectModule,
+    DonationModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

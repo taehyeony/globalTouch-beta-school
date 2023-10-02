@@ -32,6 +32,18 @@ type Project {
   user: User!
 }
 
+type Donation {
+  donation_id: String!
+  donation_amount: Int!
+  donation_status: DONATION_STATUS_ENUM!
+  created_at: DateTime!
+}
+
+enum DONATION_STATUS_ENUM {
+  COMPLETED
+  CANCEL
+}
+
 type Comment {
   comment_id: String!
   comment_content: String!
@@ -67,6 +79,7 @@ type Mutation {
   updateComment(commentId: String!, updateContent: String!): Comment!
   deleteComment(commentId: String!): Boolean!
   createUpdatedProject(content: String!, projectId: String!): UpdatedProject!
+  createDonation(impUid: String!, donationStatus: String!, donationAmount: Float!, projectId: String!): Donation!
 }
 
 input SignupWithEmailInput {
