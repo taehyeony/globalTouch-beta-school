@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Donation } from './entities/donation.entity';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IDonationCreate } from './interfaces/donation-service.interface';
 import { User } from '../user/entities/user.entity';
@@ -16,6 +16,8 @@ export class DonationService {
 
     @InjectRepository(Project)
     private readonly projectRepository: Repository<Project>,
+
+    private readonly dataSource: DataSource,
   ) {}
 
   async create({
@@ -31,6 +33,7 @@ export class DonationService {
     if (!user) {
       throw new Error('Not found User');
     }
+
     const project = await this.projectRepository.findOne({
       relations: ['user'],
       where: { project_id: projectId },
@@ -38,13 +41,30 @@ export class DonationService {
     if (!project) {
       throw new Error('Not found project');
     }
+    const beforeAmount = project.amount_raised;
 
-    return this.donationRepository.save({
-      donation_id: imp_uid,
-      donation_amount: donation_amount,
-      donation_status: donation_status,
-      user: user,
-      project: project,
-    });
+    let donation: Donation;
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction('SERIALIZABLE');
+
+    try {
+      donation = await this.donationRepository.save({
+        imp_uid: imp_uid,
+        donation_amount: donation_amount,
+        donation_status: donation_status,
+        user: user,
+        project: project,
+      });
+      await this.projectRepository.update(project.project_id, {
+        amount_raised: beforeAmount + donation_amount,
+      });
+      await queryRunner.commitTransaction();
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
+    return donation;
   }
 }

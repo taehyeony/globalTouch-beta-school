@@ -34,6 +34,7 @@ type Project {
 
 type Donation {
   donation_id: String!
+  imp_uid: String!
   donation_amount: Int!
   donation_status: DONATION_STATUS_ENUM!
   created_at: DateTime!
