@@ -24,6 +24,10 @@ export class Donation {
   @Field(() => String)
   donation_id: string;
 
+  @Column()
+  @Field(() => String)
+  imp_uid: string;
+
   @Column({ type: 'int', width: 20 })
   @Field(() => Int)
   donation_amount: number;

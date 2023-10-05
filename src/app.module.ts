@@ -8,12 +8,20 @@ import { AuthModule } from './apis/auth/auth.module';
 import { JwtAccessStrategy } from './apis/auth/strategies/jwt-access.strategy';
 import { JwtRefreshStrategy } from './apis/auth/strategies/jwt-refresh.strategy';
 import { JwtGoogleStrategy } from './apis/auth/strategies/jwt-social-google.strategy';
+import { ProjectModule } from './apis/project/project.module';
+import { CommentModule } from './apis/comment/comment.module';
+import { UpdatedProjectModule } from './apis/updatedProject/updatedProject.module';
+import { DonationModule } from './apis/donation/donation.module';
 
 console.log(process.env.DATABASE_HOST);
 @Module({
   imports: [
     AuthModule,
     UserModule,
+    ProjectModule,
+    CommentModule,
+    UpdatedProjectModule,
+    DonationModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

@@ -15,8 +15,58 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type ProjectCategory {
+  productCategory_id: String!
+  name: String!
+}
+
+type Project {
+  project_id: String!
+  title: String!
+  content: String!
+  amount_required: Int!
+  amount_raised: Int!
+  count_donors: Int!
+  created_at: DateTime!
+  projectCategory: ProjectCategory!
+  user: User!
+}
+
+type Donation {
+  donation_id: String!
+  imp_uid: String!
+  donation_amount: Int!
+  donation_status: DONATION_STATUS_ENUM!
+  created_at: DateTime!
+}
+
+enum DONATION_STATUS_ENUM {
+  COMPLETED
+  CANCEL
+}
+
+type Comment {
+  comment_id: String!
+  comment_content: String!
+  created_at: DateTime!
+  user: User!
+  project: Project!
+}
+
+type UpdatedProject {
+  updatedProject_id: String!
+  content: String!
+  created_at: DateTime!
+}
+
 type Query {
   fetchMyProfile: String!
+  fetchProject(projectId: String!): Project!
+  fetchNewProjects(page: Float!): [Project!]!
+  fetchProjectsByCountry(countryCodeId: String!, page: Float!): [Project!]!
+  fetchPopularProjects(page: Float!): [Project!]!
+  fetchComments(page: Float!): [Comment!]!
+  fetchUpdatedProjects(projectId: String!): [UpdatedProject!]!
 }
 
 type Mutation {
@@ -25,6 +75,12 @@ type Mutation {
   signupWithEmail(signupWithEmailInput: SignupWithEmailInput!): User!
   updateUserCountryCode(coutryCode: String!): User!
   editProfile(name: String, profile_image_url: String): User!
+  createProject(createProjectInput: CreateProjectInput!, projectImageUrls: String): Project!
+  createComment(commentContent: String!, projectId: String!): Comment!
+  updateComment(commentId: String!, updateContent: String!): Comment!
+  deleteComment(commentId: String!): Boolean!
+  createUpdatedProject(content: String!, projectId: String!): UpdatedProject!
+  createDonation(impUid: String!, donationStatus: String!, donationAmount: Float!, projectId: String!): Donation!
 }
 
 input SignupWithEmailInput {
@@ -32,4 +88,11 @@ input SignupWithEmailInput {
   password: String!
   name: String!
   countryCode: String!
+}
+
+input CreateProjectInput {
+  title: String!
+  content: String!
+  amount_required: Int!
+  productCategory_name: String!
 }

@@ -33,15 +33,21 @@ export class Project {
   @Field(() => Int)
   amount_raised: number;
 
+  @Column({ type: 'int', width: 20, default: 0 })
+  @Field(() => Int)
+  count_donors: number;
+
   @CreateDateColumn()
   @Field(() => Date)
   created_at: Date;
 
   @JoinColumn({ name: 'productCategory_id' })
   @ManyToOne(() => ProjectCategory)
+  @Field(() => ProjectCategory)
   projectCategory: ProjectCategory;
 
   @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User)
+  @Field(() => User)
   user: User;
 }

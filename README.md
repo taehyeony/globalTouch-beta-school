@@ -17,27 +17,27 @@
 
 ## Project Module
 
-- [ ] feature7/createPoject(pic max 3)
-- [ ] feature8/fetchProject
-- [ ] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
-- [ ] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
-- [ ] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
+- [x] feature7/createProject(pic max 3)
+- [x] feature8/fetchProject
+- [x] feature9/fetchPopularProjects(pageNation-pageSize:4, sortByNumberOfDonors)
+- [x] feature10/fetchNewProjects(pageNation-pageSize:4, sortByTime)
+- [x] feature11/fetchProjectsByCountry(pageNation-pageSize:4, sortByTime)
 
 ## Comment Module
 
-- [ ] feature12/createComment
-- [ ] feature13/fetchComments(sortByTime)
-- [ ] feature14/updateComment
-- [ ] feature15/deleteComment
+- [x] feature12/createComment
+- [x] feature13/fetchComments(pageNation-pageSize:10, sortByTime)
+- [x] feature14/updateComment
+- [x] feature15/deleteComment
 
 ## UpdatedProject Module
 
-- [ ] feature16/createUpdatedProject
-- [ ] feature17/fetchUpdatedProjects
+- [x] feature16/createUpdatedProject
+- [x] feature17/fetchUpdatedProjects
 
 ## Donation Module
 
-- [ ] feature18/createDonation
+- [x] feature18/createDonation
 
 ## Search Module
 
