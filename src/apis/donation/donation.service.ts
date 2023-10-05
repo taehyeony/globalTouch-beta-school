@@ -56,8 +56,10 @@ export class DonationService {
         user: user,
         project: project,
       });
+
       await this.projectRepository.update(project.project_id, {
         amount_raised: beforeAmount + donation_amount,
+        count_donors: project.count_donors + 1,
       });
       await queryRunner.commitTransaction();
     } catch (err) {
